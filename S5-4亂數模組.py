@@ -10,7 +10,7 @@ print(randint(10,20))
 import random as r
 r.randint(10,20)
 
-#choice(字串)
+#choice(字串或是串列)，隨機取出1個元素
 print(r.choice("abcdefghijklm"))
 
 #random() : 0~1隨機的浮點數
@@ -19,9 +19,9 @@ print(r.random())
 #randrange(n1,n2,step):n1~n2之間每隔step取出
 print(r.randrange(1,10,2))
 
-# sample(字串,n)
-str ="abcdefghijklm"
-a = r.sample(str,3)
+# sample(字串,n)，隨機取出n個元素
+stra ="abcdefghijklm"
+a = r.sample(stra,3)
 print(a)
 
 #shuffle(list) 串列洗牌
