@@ -22,4 +22,24 @@ print("circle area:%5.2f , length: %5.2f" %(ans_area,ans_length))
 def GetArea(width, height=5):
     return width * height 
 
+print("===========區域變數=================")
+#區域變數
+def scope():
+    var1 =1 
+    print(var1,var2)
+var1=10 
+var2=20
+scope()
+print("============全域變數=================")
+#全域變數
+def scopeg():
+    global vara
+    vara=1
+    varb=2
+    print(vara,varb)
+vara=10
+varb=20
+scopeg()
+print(vara,varb)
+
 
