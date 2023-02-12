@@ -53,7 +53,17 @@ print(isDir)
 adir,afilename= os.path.split(join_path1)
 print("目錄:"+adir,"檔案:"+afilename)
 
-
+# (目錄名稱,下一層目錄層級,目錄中所有檔案串列)=os.walk函式走訪子目錄
+#
+#
+cur_path = os.path.dirname(__file__)
+print("目前目錄:",cur_path)
+tree = os.walk(cur_path)
+for dirname,subdir,files in tree:
+    print("檔案路徑:",dirname)
+    print("目錄串列:",subdir)
+    print("檔案串列:",files)
+    print()
 
 
 
