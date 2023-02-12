@@ -26,11 +26,38 @@ $	字串結尾的子字串，例如 'abc$' 配對以 'abc' 結尾的字串。
 \Z	字串的結尾字元。
 '''
 
+#match()：回傳MatchObject物件
 import re
 temp="temp12po"
 rule_a=re.compile(r"[a-z]+")
 m = rule_a.match(temp)
-print(m)
+if not m ==None:
+    print(m.group())#temp
+    print(m.start())#0
+    print(m.end())  #3
+    print(m.span()) #回傳起,迄
+
+#search():傳回指定定義第一組符合正規劃表達字串
+print("===== search搜尋=========")
+temp="1234temp1234"
+rule_a=re.compile(r"[a-z]+")
+m = rule_a.search(temp)
+if not m ==None:
+    print(m.group())#temp
+    print(m.start())#0
+    print(m.end())  #3
+    print(m.span()) #回傳起,迄  
+
+print("======findall========")
+temp="anmc1234asdfdf"
+rule_a=re.compile(r"[a-z]+")
+m = rule_a.findall(temp)
+print(m,end=",\r\n")
+
+
+
+
+
 
 
 
