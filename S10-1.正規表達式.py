@@ -26,7 +26,8 @@ $	字串結尾的子字串，例如 'abc$' 配對以 'abc' 結尾的字串。
 \Z	字串的結尾字元。
 '''
 
-#match()：回傳MatchObject物件
+#match()：只要第一個字元不符合，就會結束搜尋，回傳None，如果有找到就會回傳MatchObject物件
+#(r"[a-z]+" 加上r防止表達中有\ 跳脫字元 
 import re
 temp="temp12po"
 rule_a=re.compile(r"[a-z]+")
@@ -48,6 +49,7 @@ if not m ==None:
     print(m.end())  #3
     print(m.span()) #回傳起,迄  
 
+#findall():找出字串所有符合的正規表達式。
 print("======findall========")
 temp="anmc1234asdfdf"
 rule_a=re.compile(r"[a-z]+")
@@ -55,9 +57,77 @@ m = rule_a.findall(temp)
 print(m,end=",\r\n")
 
 
+#分組方式
+#
+print("=================group=========================")
+phone_num="tel:02-12345678"
+phone_rule=r"(\d{2})-(\d{8})"
+phone = re.search(phone_rule,phone_num)
+if not phone ==None:
+    print("共幾個{}Group".format( len(phone.groups())))
+    print(phone.group())
+    print(phone.group(0))
+    print(phone.group(1))
+    print(phone.group(2))
+     
 
+# "?" 搜尋:字元出現1次或0次，該字元可有可無
+print("=================????=========================")
+phone_num="tel:0212345678"
+phone_rule=r"(\d{2})-?(\d{8})"
+phone = re.search(phone_rule,phone_num)
+if not phone ==None:
+    print("共幾個{}Group".format( len(phone.groups())))
+    print(phone.group())
+    print(phone.group(0))
+    print(phone.group(1))
+    print(phone.group(2))
 
+# "|" 搜尋:同時比對多個格式
+'''
+print("=================||||=========================")
+phone_nums=["tel:0212345678","tel:(02)-12345678","tel:049-12345678","tel:0933-123456","tel:04-12345678"]
+phone_rule=r"(\d{2})-?(\d{8})|(\d{4})-?(\d{6})"
+phones = re.search(phone_rule,phone_nums)
+i=1
+for phone in phone_nums:
+    num = re.search(phone_rule,phone)
+    if not num==None:
+        print("===>"+i)
+        print("共幾個{}Group".format( len(phone.groups())))
+        print(phone.group())
+        #print(phone.group(0))
+        #print(phone.group(1))
+        #print(phone.group(2))
+'''    
 
+# 字元分類
+#
+print("===============字元分類=================")
+rule_b = r'[0-9+]+'
+s = "Amy was 18 year old, she like dog."
+m = re.findall(rule_b,s)
+print(m)
+
+# 使用+字元搜尋
+#
+print("===============+=================")
+rule_c= r'[aeiou]+'
+s="John is my best friend"
+m=re.findall(rule_c,s)
+print(m)
+
+# 使用忽略大小字元
+#
+a01=r'PYTHON|ANDROID'
+s = r'I like Python and Android! '
+m1= re.findall(a01,s,re.I)
+print(m1)
+
+# 使用^字元
+#
+
+print("========================================================")
 
 
 
