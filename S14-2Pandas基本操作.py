@@ -56,7 +56,7 @@ se1 = pd.Series({'王小明':65,'李小美':80,'陳大同':55})
 se2 = pd.Series({'王小明':90,'李小美':90,'陳大同':72})
 se3 = pd.Series({'王小明':50,'李小美':66,'陳大同':89})
 se4 = pd.Series({'王小明':80,'李小美':65,'陳大同':79})
-se5  = pd.Series({'王小明':80,'李小美':65,'陳大同':79})
+se5 = pd.Series({'王小明':90,'李小美':65,'陳大同':79})
 df4 = pd.concat([se1,se2,se3,se4,se5],axis=1)
 df4.columns=['國文','英文','數學','自然','社會']
 print(df4)
@@ -64,4 +64,30 @@ print(df4)
 print(df4["國文"])
 #取兩個以上的欄位
 print(df4[["國文","英文"]])
+
+#條件取值
+# 國文大於80
+print(df4[df4['國文']>=80])
+#values 回傳二維陣列
+print(df4.values)
+
+#loc用索引或欄位名稱來取得資料
+value1 = df4.loc["李小美",'英文']
+print(value1)
+
+#取出某部分資料集合
+index_list=['王小明','李小美']
+column_list=['國文','英文']
+print(df4.loc[index_list,column_list])
+
+#iloc用索引或是欄位編號來取得資料
+print(df4.iloc[2,3])
+print(df4.iloc[2,[1,2,3,4]])
+
+#head([]):取的最前數列資料
+print(df4.head(4))
+
+#tail([]):取的最後數列資料
+print(df4.tail(4))
+
 
