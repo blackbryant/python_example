@@ -14,3 +14,13 @@ df2 = df.sort_values('國文',ascending=1)
 print(df2)
 print(df.sort_index(axis=1))
 print(df.sort_index(axis=0))
+
+#資料修改
+df.loc['王小明']['數學']=90
+df.loc['王小明'][:]=80
+
+#刪除DataFrame資料
+df.drop("王小明")
+print(df)
+
+
