@@ -23,4 +23,24 @@ df.loc['王小明'][:]=80
 df.drop("王小明")
 print(df)
 
+#檔案存取
+#CSV檔案
+df2 = pd.read_csv("test1.csv",encoding='big5',header=0,index_col=0)
+print(df2)
+print(type(df2))
+
+#html
+#需要安裝 > pip install lxml
+#keep_default_na 是否去除空白
+url="https://www.tiobe.com/tiobe-index"
+tables=pd.read_html(url,header=0,keep_default_na=False)
+print(tables[0])
+
+#寫入CSV檔案
+df.to_csv("score3.csv",encoding='utf-8')
+df.to_json("score3.json")
+
+#sqlite
+#sqlit_csv = pd.read_sql('aa.sqlite')
+
 
