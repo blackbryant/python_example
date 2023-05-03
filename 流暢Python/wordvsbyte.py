@@ -28,7 +28,8 @@ import os
 fmt='<3s3sHH'
 
 current_directory = os.getcwd()
-os.chdir(current_directory+"\\流暢Python")
+print(current_directory)
+os.chdir(current_directory+os.sep+"流暢Python")
 with open("zwj_sample.png",'rb') as fp:
     img = memoryview(fp.read())
 
@@ -57,3 +58,17 @@ print("São Paulo".encode('cp437',errors="ignore"),sep="\t")
 print("São Paulo".encode('cp437',errors="replace"),sep="\t")
 # cp437發生錯誤，無法辨碼換成xml實體
 print("São Paulo".encode('cp437',errors="xmlcharrefreplace"),sep="\t")
+
+
+#UnicodeDecodeError
+print("======UnicodeDecodeError======")
+octets = b'Montr\xe9al'
+print(octes.decode('cp1252'))
+print(octes.decode("utf8",errors="replace"))
+
+#big-endian or little-endian
+u16le = 'El Nino'.encode("utf_16le")
+print(list(u16le))
+u16be = 'El Nino'.encode("utf_16be")
+print(list(u16be))
+
