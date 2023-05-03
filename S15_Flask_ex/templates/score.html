@@ -1,0 +1,41 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}"/>
+</head>
+<bod>
+    <h1>Flask Hello</h1>
+    <img src="{{url_for('static',filename='01.jpg')}}" width="10%" height="10%"/>
+    <br>
+    <table border="1">
+        <head> 
+
+            <tr>
+                <td></td>
+                {% for ll in list.columns%}
+                <td>{{ ll }}</td>
+                {% endfor %}
+            </tr>
+            
+        </head>
+        {% for name in list.index %}
+        <tr>
+           
+            <td>{{  name }}</td>
+            <td>{{  list[name]["國文"] }}</td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    
+    
+    
+    
+     
+    
+</bod>
+
+
+
+</html>
+

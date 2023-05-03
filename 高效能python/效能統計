@@ -1,0 +1,11 @@
+
+>python -m cProfile -o profiles.state julia1.py
+
+*snakeviz 觀看效能
+>snakeviz .\profiles.state
+
+*
+>pip install line_profiler
+>
+
+
