@@ -1,0 +1,16 @@
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "my_func" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:root:scheduler start !
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "my_func" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "my_func (trigger: interval[0:00:10], next run at: 2023-05-28 21:13:16 CST)" (scheduled at 2023-05-28 21:13:16.503750+08:00)
+INFO:root:my_func =====
+INFO:apscheduler.executors.default:Job "my_func (trigger: interval[0:00:10], next run at: 2023-05-28 21:13:26 CST)" executed successfully
+INFO:apscheduler.executors.default:Running job "my_func (trigger: interval[0:00:10], next run at: 2023-05-28 21:13:36 CST)" (scheduled at 2023-05-28 21:13:26.503750+08:00)
+INFO:root:my_func =====
+INFO:apscheduler.executors.default:Job "my_func (trigger: interval[0:00:10], next run at: 2023-05-28 21:13:36 CST)" executed successfully
+INFO:apscheduler.executors.default:Running job "my_func (trigger: interval[0:00:10], next run at: 2023-05-28 21:13:46 CST)" (scheduled at 2023-05-28 21:13:36.503750+08:00)
+INFO:root:my_func =====
+INFO:apscheduler.executors.default:Job "my_func (trigger: interval[0:00:10], next run at: 2023-05-28 21:13:46 CST)" executed successfully
