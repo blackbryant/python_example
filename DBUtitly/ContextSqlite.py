@@ -14,8 +14,6 @@ class ContextSqlite:
         #connection_str = connection_format.format(db_user,db_host,db_name)
         engine = create_engine(connection_str)
         self.engine = engine
-        Base = declarative_base()
-        self.base = Base 
     
     def __enter__(self):
         """
@@ -43,7 +41,7 @@ class ContextSqlite:
         '''
         print('commit')
         self.session.commit()
-    
+    '''
     def CreateSchema(self):
         #建立資料表以及刪除資料表
         #Define Class Data
@@ -53,20 +51,5 @@ class ContextSqlite:
         #建立資料表以及刪除資料表
         #Define Class Data
         self.base.metadata.drop_all(self.engine)
+    '''
 
-if __name__ == '__main__':
-     
-
-    url = 'D:\\Lab\\newpy\\test.db'
-    with DataConn(url) as conn:
-        @dataclass
-        class Person(conn.base):
-            __tablename__ = 'person'
-            id = Column(Integer, primary_key=True)
-            name = Column(String)
-            age = Column(Integer)
-        conn.CreateSchema()
-        iid=12
-        user = Person(name="John Doe", age=10, id=iid)
-        conn.session.add(user)
-        conn.commit()
