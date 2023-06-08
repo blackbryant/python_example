@@ -5,7 +5,7 @@ from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-class DataConn:
+class ContextSqlite:
     """"""
     def __init__(self, url):
         """Constructor"""
