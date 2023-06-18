@@ -30,6 +30,7 @@ class UserDao:
 
 if __name__ == '__main__':
     url = r'E:\python範例\python_example\DBUtitly\test.db'
+    
     userDao = UserDao(url)
     userDao.CreateTable()
     p = Person(name="John Doe", age=10, id=13)
