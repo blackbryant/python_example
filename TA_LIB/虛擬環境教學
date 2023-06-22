@@ -1,0 +1,12 @@
+##### 安裝 pipenv
+> pip install pipenv
+
+#### 建立虛擬環境
+ 指定版本
+> pipenv --python 3.10
+> pipenv shell
+> pipenv install requests
+> pipenv update requests
+> exit 
+
+
