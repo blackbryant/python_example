@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "J.測試框架"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
