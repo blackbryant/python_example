@@ -1,4 +1,6 @@
-from calculator import *
+import sys
+sys.path.append("..") 
+from sample.calculator import *
 
 def test_add():
     result_value = add(1,2)
