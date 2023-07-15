@@ -1,0 +1,36 @@
+import requests
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+
+url="https://api.github.com/search/repositories?q=language:python&sorts=stars"
+header={"Accept":"application/vnd.github.v3+json"}
+r = requests.get(url, headers=header)
+
+print(f"status:{r.status_code}")
+
+response_dict = r.json()
+print(f"total : {response_dict['total_count']}")
+
+repos_items = response_dict["items"]
+print(f"items : {len(repos_items)}")
+lista =[] 
+for item in repos_items:
+    dict1={}
+    dict1['name'] = item['name']
+    dict1['owner'] = item['owner']['login']
+    dict1['stargazers_count'] = item['stargazers_count']
+    dict1['repository'] = item['html_url']
+    dict1['created'] = item['created_at']
+    dict1['updated'] = item['updated_at']
+    dict1['description'] = item['description']
+    lista.append(dict1)
+
+pda = pd.DataFrame(lista, columns=["name","owner","stargazers_count","repository","created","updated","description"])
+print(pda.head())
+fig = px.bar(pda,x="name",y="stargazers_count",title='Github Popular Project',hover_data=["repository","description"],)
+fig.show()
+
+### hacker-news
+url_news="https://hacker-news.firebaseio.com/v0/item/19155826.json"
+url_to="https://hacker-news.firebaseio.com/v0/topstories.json"
