@@ -34,13 +34,16 @@ print("college 實例是否屬於 Elementary 物件類別:",isinstance(college,E
 print("college 實例是否屬於 Senior 物件類別:",isinstance(college,Senior))          #False
 print("college 實例是否屬於 College 物件類別:",isinstance(college,College))        #True
 
+
+
+
 #其他
 #dir():環境變數、方法
 print(dir())
 #(1)__doc__ 文件
 print(college.__doc__)
 
-#(2) 
+#(2) 執行main()函式
 if __name__=="__main__":  #程式是自己執行，會跑這一段
     print("")
 
