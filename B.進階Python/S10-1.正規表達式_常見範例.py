@@ -118,34 +118,54 @@ print("==================驗證台灣新版統一編號-======================")
 #
 number_8_rule_template = "^[0-9]{8}$"
 
-def isTax_Id_Number(input_str):
+def isTax_Id_NumberForNewRule(input_str):
     multiply_array = [1,2,1,2,1,2,4,1]
     mutilply_sum=[-1,-1] 
     i=0
-    for str in input_str:
+    for stra in input_str:
         isLucky_Sevent = False 
-        print(input_str)
-        num = int(str)
-        
+        num = int(stra)
         sub_sum = num * multiply_array[i]
-        if(sub_sum/10>0):
-           quotient = sub_sum/10
+        #print(str(i)+":"+str(sub_sum))
+        if((sub_sum/10)>0):
+           quotient = sub_sum//10
            remainder = sub_sum%10
            sub_sum = quotient+remainder
+           #print(str(i)+":"+str(quotient)+","+str(remainder)+"="+str(sub_sum))
            if(i==6 and num==7 and sub_sum ==10): #第七位數等於7
                 isLucky_Sevent = True
-
+                #print("是否7:"+str(isLucky_Sevent))
+        
         if isLucky_Sevent ==True:
             mutilply_sum[0] = mutilply_sum[0]+ 1
             mutilply_sum[1] = mutilply_sum[1]+ 0
         else:
-            mutilply_sum[0] = mutilply_sum[0]+ sub_sum
-            mutilply_sum[1] = mutilply_sum[1]+ sub_sum
+            mutilply_sum[0] = mutilply_sum[0]+ sub_sum 
+            mutilply_sum[1] = mutilply_sum[1]+ sub_sum 
         i = i+1
-        return mutilply_sum
+    mutilply_sum[0] = mutilply_sum[0]+ 1
+    mutilply_sum[1] = mutilply_sum[1]+ 1
+
+    print("第一位:{},第二位: {}".format(mutilply_sum[0],mutilply_sum[1]))
+    #print(""+str((mutilply_sum[0]%5)))
+    #print(""+str((mutilply_sum[1]%5)))
+    #如果結果可以能被「5」整除表示為
+    result = (mutilply_sum[0]%5==0) or (mutilply_sum[1]%5==0)
+    #print("result:"+str(result))
+    return result 
     
 input_01=  "04595257"
 input_02=  "10458575"
-input_03=  "12345678"
-a1=isTax_Id_Number(input_01)
-print(f"{0},{1}",a1[0],a1[1])
+input_03=  "10458574"
+input_04=  "12345678"
+input_05=  "10458570"
+print("input:"+input_01+",result:"+str(isTax_Id_Number(input_01)))
+print("input:"+input_02+",result:"+str(isTax_Id_Number(input_02)))
+print("input:"+input_03+",result:"+str(isTax_Id_Number(input_03)))
+print("input:"+input_04+",result:"+str(isTax_Id_Number(input_04)))
+print("input:"+input_05+",result:"+str(isTax_Id_Number(input_05)))
+
+
+
+
+
