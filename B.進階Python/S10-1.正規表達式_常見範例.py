@@ -34,7 +34,7 @@ print(re.fullmatch(number_rule_template,input_01))  #驗證成功
 print(re.fullmatch(number_rule_template,input_02))  #驗證失敗
 print(re.fullmatch(number_rule_template,input_03))  #驗證失敗
 
-#(3)數字驗證
+#(3)數字驗證-小數點
 print("==================數字驗證-小數點======================")
 number_rule_template = "^[0-9]+(.[0-9]{1,5})?$"
 input_01=  "1234"
@@ -56,14 +56,14 @@ print(re.fullmatch(mobile_rule_template,input_02))  #驗證失敗
 print(re.fullmatch(mobile_rule_template,input_03))  #驗證失敗
 
 
-#(4)身分證字號
+#(5)身分證字號
 print("==================身分證字號-======================")
 #組合規則:　　　
 # (1)英文代號以下表轉換成數字
 # A = 10 台北市 J = 18 新竹縣 S = 26 高雄縣
 # B = 11 台中市 K = 19 苗栗縣 T = 27 屏東縣
 # C = 12 基隆市 L = 20 台中縣 U = 28 花蓮縣
-# D= 13 台南市 M = 21 南投縣 V = 29 台東縣
+# D = 13 台南市 M = 21 南投縣 V = 29 台東縣
 # E = 14 高雄市 N = 22 彰化縣* W = 32 金門縣
 # F = 15 台北縣* O = 35 新竹市 X = 30 澎湖縣
 # G = 16 宜蘭縣 P = 23 雲林縣 Y = 31 陽明山
@@ -75,28 +75,67 @@ print("==================身分證字號-======================")
 # (2)各數字從右到左依次乘１、２、３、４．．．．８，做積之和
 # (3)求出的積除10後之餘數,用10減該餘數,結果就是檢查碼,若餘數為0，檢查碼就是0　　　
 id_rule_template = "^[A-Z]{1}[1-2]{1}[0-9]{8}$"
-input_01=  "A123456789"
+
+
+def check_id_number(input_str):
+    id_rule_template = "^[A-Z]{1}[1-2]{1}[0-9]{8}$"
+    is_right = re.fullmatch(id_rule_template,input_str)
+    #檢查格式是否正確
+    if(is_right==False):
+        return False 
+    id_dict = {"A":10,"B":11, "C":12,"D":13,"E":14,"F":15,"G":16,"H":17,"J":18,
+               "K":19,"L":20, "M":21,"N":22,"O":35,"P":23,"Q":24,"R":25,"S":26,
+               "T":27,"U":28, "V":29,"W":32,"X":30,"Y":31,"Z":33 ,"I":34,"R":25}
+    i=0
+    #處理英文字母轉換
+    alphabet_num = id_dict.get(input_str[0])
+    #print(alphabet_num)
+    quotient = (alphabet_num//10)*1
+    remainder = (alphabet_num%10)*9
+    alphabet_sum = quotient+remainder
+     
+    sum =0
+    i=8 
+    for stra in input_str[1:-1]:
+        num = int(stra)
+        sub_sum = num * i 
+        sum = sum + sub_sum
+        i = i -1
+    sum = sum + alphabet_sum
+    remainder = sum % 10 
+    valid_code =  10 - remainder
+    #print("sum:"+str(sum))
+    print("code:"+str(valid_code))
+
+    if(valid_code - int(input_str[-1])==0):
+        return True
+    else:
+        return False
+    
+input_01=  "R122478963"
 input_02=  "A122344567"
 input_03=  "A986343244"
+print(check_id_number(input_01))
+print(check_id_number(input_02))
+print(check_id_number(input_03))
 
-
-#(5)中文字
+#(6)中文字
 print("==================判斷中文字-======================")
 input_01=  "0933123456"
 input_02=  "中文字"
 input_03=  "我是達人"
-def  isChinese_Word(strs):
+def  is_chinese_Word(strs):
     for _char in strs:
         if not '\u4e00' <= _char <= '\u9fa5':
             return False
     return True
 
-print(isChinese_Word(input_01))  #驗證失敗
-print(isChinese_Word(input_02))  #驗證成功
-print(isChinese_Word(input_03))  #驗證成功
+print(is_chinese_Word(input_01))  #驗證失敗
+print(is_chinese_Word(input_02))  #驗證成功
+print(is_chinese_Word(input_03))  #驗證成功
 
 
-#(6)英文
+#(7)英文
 print("==================判斷全部英文字-======================")
 word_rule_template = "^[A-Za-z]+$"
 input_01=  "0933123456"
@@ -106,7 +145,7 @@ print(re.fullmatch(word_rule_template,input_01))  #驗證失敗
 print(re.fullmatch(word_rule_template,input_02))  #驗證成功
 print(re.fullmatch(word_rule_template,input_03))  #驗證失敗
 
-#(6)台灣統一編號
+#(8)台灣統一編號
 print("==================驗證台灣新版統一編號-======================")
 #驗證邏輯公式:(含2023/4以後擴增)
 #1、長度：共八位，，全部為數字型態。
@@ -118,7 +157,7 @@ print("==================驗證台灣新版統一編號-======================")
 #
 number_8_rule_template = "^[0-9]{8}$"
 
-def isTax_Id_NumberForNewRule(input_str):
+def is_tax_id_number_for_new_rule(input_str):
     multiply_array = [1,2,1,2,1,2,4,1]
     mutilply_sum=[-1,-1] 
     i=0
@@ -159,13 +198,30 @@ input_02=  "10458575"
 input_03=  "10458574"
 input_04=  "12345678"
 input_05=  "10458570"
-print("input:"+input_01+",result:"+str(isTax_Id_Number(input_01)))
-print("input:"+input_02+",result:"+str(isTax_Id_Number(input_02)))
-print("input:"+input_03+",result:"+str(isTax_Id_Number(input_03)))
-print("input:"+input_04+",result:"+str(isTax_Id_Number(input_04)))
-print("input:"+input_05+",result:"+str(isTax_Id_Number(input_05)))
+print("input:"+input_01+",result:"+str(is_tax_id_number_for_new_rule(input_01)))
+print("input:"+input_02+",result:"+str(is_tax_id_number_for_new_rule(input_02)))
+print("input:"+input_03+",result:"+str(is_tax_id_number_for_new_rule(input_03)))
+print("input:"+input_04+",result:"+str(is_tax_id_number_for_new_rule(input_04)))
+print("input:"+input_05+",result:"+str(is_tax_id_number_for_new_rule(input_05)))
 
 
 
+#(9)台灣手機
+print("==================驗證台灣手機-======================")
+cellPhone_rule_template = "(?:0|886-?)9\d{2}-?\d{6}"
+input_01=  "0933123456"
+input_02=  "093312345666"
+input_03=  "886933123456"
+print(re.fullmatch(cellPhone_rule_template,input_01))
+print(re.fullmatch(cellPhone_rule_template,input_02))
+print(re.fullmatch(cellPhone_rule_template,input_03))
+
+#(9)台灣電話
+print("==================驗證台灣電話-======================")
+phone_rule_template = "0[2-8-]+[0-7]+[0-9]"
+input_01=  "07123456"
+input_02=  "07123456"
+print(re.fullmatch(phone_rule_template,input_01))
+print(re.fullmatch(phone_rule_template,input_02))
 
 
