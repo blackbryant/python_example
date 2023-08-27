@@ -1,0 +1,8 @@
+{% block footer %}
+ {% if now%}
+   <p  style="font-family:'Courier New', Courier, monospace;font-size: small;">現在時刻:{{now}}, 版本:1.01</p>
+   {% else %}
+   <p style="font-family:'Courier New', Courier, monospace"></p>
+   {% endif %}
+
+{% endblock%}

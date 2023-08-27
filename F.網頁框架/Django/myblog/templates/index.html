@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+ 
+{% block title %}Index{% endblock %}
+<body>
+   {% block head %}{% endblock%}
+    <hr>
+    {% block content %}
+      <div class="container-fluid">
+         <div class="card">
+           
+            {% for post in posts %}
+            <div class="card-header">
+               <p style="font-family: 'Courier New', Courier, monospace;font-weight: bold;font-size: 16pt;">
+                  <a href="/post/{{post.slug}}">{{post.title}}</a> 
+               </p>
+            </div>
+            <div class="card-footer">
+               <p style="font-family: 'Courier New', Courier, monospace;letter-spacing: 1pt; font-size: 1pt;">{{post.body}}</p>
+              
+            </div>
+            {% endfor%}
+         </div>
+      {% endblock %}
+   </div>
+    
+</body>
+</html>
+

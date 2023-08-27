@@ -1,0 +1,15 @@
+{% extends "base/base.html" %}
+{% load markdown_extras %}
+
+{% block title %}Post{% endblock %}
+
+<body>
+    {% block content %}
+    <h3>{{post.title}}</h3>    
+    <hr>
+    {{ post.body |convert_makedown |safe }}
+
+    {% endblock %}
+    <p><a href="/">回首頁</a></p>
+</body>
+</html>
