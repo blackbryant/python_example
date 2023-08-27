@@ -6,7 +6,7 @@
 <body>
     {% block content %}
     <h3>{{post.title}}</h3>    
-    <hr>
+    <hr> 
     {{ post.body |convert_makedown |safe }}
 
     {% endblock %}
