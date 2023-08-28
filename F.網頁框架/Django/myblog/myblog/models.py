@@ -32,3 +32,11 @@ class NewTable(models.Model):
         ordering=('-int_f',)
         def __str__(self) -> str:
             return self.date_f
+
+class Product(models.Model):
+    #選項用法
+    SIZES={('S','Small'),('L','Large'),('M','Medium')}
+    sku = models.CharField(max_length=5)
+    name = models.CharField(max_length=20)
+    price = models.PositiveIntegerField()
+    size = models.CharField(max_length=1,default='S', choices=SIZES)

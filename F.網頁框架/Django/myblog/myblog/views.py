@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from myblog.models import Post
+from myblog.models import Product
 from datetime import datetime
 
 def homepage(request):
@@ -16,4 +17,10 @@ def showpost(request,slug):
     except:
         redirect('/')
     
-
+def about(request):
+    try:
+        products = Product.objects.all()
+        if products !=None:
+            return render(request,"about.html",locals())
+    except:
+        redirect("/")
